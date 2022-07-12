@@ -44,4 +44,20 @@ class ApiService {
       return Product.fromJson(jsonData);
     }).catchError((err) => print(err));
   }
+
+  Future<dynamic> getCategories() async {
+    return http.get(Uri.parse('$baseUrl/products/categories')).then((data) {
+      final categories = [];
+
+      if (data.statusCode == 200) {
+        final jsonData = json.decode(data.body);
+
+        for (var category in jsonData) {
+          categories.add(category);
+        }
+
+        return categories;
+      }
+    }).catchError((err) => print(err));
+  }
 }

@@ -24,13 +24,13 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.redAccent,
         actions: [
-          // IconButton(
-          //   icon: const Icon(Icons.view_list),
-          //   onPressed: () => Navigator.push(
-          //     context,
-          //     MaterialPageRoute(builder: (_) => const AllCategoryScreen()),
-          //   ),
-          // ),
+          IconButton(
+            icon: const Icon(Icons.view_list),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const AllCategoryScreen()),
+            ),
+          ),
           // IconButton(
           //   icon: const Icon(Icons.shopping_cart),
           //   onPressed: () => Navigator.push(

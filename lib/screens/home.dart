@@ -31,15 +31,15 @@ class HomeScreen extends StatelessWidget {
               MaterialPageRoute(builder: (_) => const AllCategoryScreen()),
             ),
           ),
-          // IconButton(
-          //   icon: const Icon(Icons.shopping_cart),
-          //   onPressed: () => Navigator.push(
-          //     context,
-          //     MaterialPageRoute(
-          //       builder: (_) => const CartScreen(),
-          //     ),
-          //   ),
-          // ),
+          IconButton(
+            icon: const Icon(Icons.shopping_cart),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => const CartScreen(),
+              ),
+            ),
+          ),
         ],
       ),
       body: Center(

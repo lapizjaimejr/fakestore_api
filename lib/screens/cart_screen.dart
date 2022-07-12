@@ -18,6 +18,10 @@ class CartScreen extends StatelessWidget {
     return await service.getProduct(prodID);
   }
 
+  Future<bool> deleteCart(cartID) async {
+    return await service.deleteCart(cartID);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,12 +74,12 @@ class CartScreen extends StatelessWidget {
                     trailing: IconButton(
                       icon: const Icon(Icons.delete, color: Colors.red),
                       onPressed: () async {
-                        // await deleteCart('1');
-                        // ScaffoldMessenger.of(context).showSnackBar(
-                        //   const SnackBar(
-                        //     content: Text('Cart deleted successfully.'),
-                        //   ),
-                        // );
+                        await deleteCart('1');
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Cart deleted successfully.'),
+                          ),
+                        );
                       },
                     ),
                   );

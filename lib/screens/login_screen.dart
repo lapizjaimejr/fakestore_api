@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 import '../services/api_service.dart';
 import 'home.dart';
@@ -12,6 +13,12 @@ class LoginScreen extends StatelessWidget {
   final TextEditingController passwordCtrl = TextEditingController(
     text: '83r5^_',
   );
+
+  ApiService get service => GetIt.I<ApiService>();
+
+  Future<dynamic> login(username, password) async {
+    return await service.processLogin(username, password);
+  }
 
   @override
   Widget build(BuildContext context) {

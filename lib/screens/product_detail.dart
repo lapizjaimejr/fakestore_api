@@ -14,6 +14,10 @@ class ProductDetailScreen extends StatelessWidget {
     return await service.getProduct(prodID);
   }
 
+  Future<bool> updateCart(cartID, prodID) async {
+    return await service.updateCart(cartID, prodID);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,12 +92,12 @@ class ProductDetailScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.green,
         onPressed: () async {
-          // await updateCart(1, id);
-          // ScaffoldMessenger.of(context).showSnackBar(
-          //   const SnackBar(
-          //     content: Text('Product added to cart'),
-          //   ),
-          // );
+          await updateCart(1, id);
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Product added to cart'),
+            ),
+          );
         },
         child: const Icon(Icons.add_shopping_cart),
       ),

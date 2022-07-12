@@ -102,7 +102,7 @@ class ApiService {
     }).catchError((err) => print(err));
   }
 
-  Future<Cart> getAllFromCart(int cartID) async {
+  Future<Cart> getAllFromCart(String cartID) async {
     return http.get(Uri.parse('$baseUrl/carts/$cartID')).then((data) {
       var cart = Cart();
       if (data.statusCode == 200) {

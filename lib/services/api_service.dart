@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import '../models/product.dart';
 import '../models/user_credentials.dart';
 import 'package:http/http.dart' as http;
 
@@ -15,6 +16,21 @@ class ApiService {
       if (data.statusCode == 200) {
         return json.decode(data.body);
       }
+    }).catchError((err) => print(err));
+  }
+
+  Future<List<Product>> getProducts() async {
+    return http.get(Uri.parse('$baseUrl/products')).then((data) {
+      final products = <Product>[];
+
+      if (data.statusCode == 200) {
+        final jsonData = json.decode(data.body);
+
+        for (var product in jsonData) {
+          products.add(Product.fromJson(product));
+        }
+      }
+      return products;
     }).catchError((err) => print(err));
   }
 }

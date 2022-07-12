@@ -33,4 +33,15 @@ class ApiService {
       return products;
     }).catchError((err) => print(err));
   }
+
+  Future<Product> getProduct(int prodID) async {
+    return http.get(Uri.parse('$baseUrl/products/$prodID')).then((data) {
+      var jsonData;
+
+      if (data.statusCode == 200) {
+        jsonData = json.decode(data.body);
+      }
+      return Product.fromJson(jsonData);
+    }).catchError((err) => print(err));
+  }
 }

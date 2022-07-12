@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 import '../models/product.dart';
 import '../services/api_service.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   const ProductDetailScreen({Key? key, required this.id}) : super(key: key);
+
+  final id;
+  ApiService get service => GetIt.I<ApiService>();
+
+  Future<Product> getProduct(prodID) async {
+    return await service.getProduct(prodID);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,13 +48,13 @@ class ProductDetailScreen extends StatelessWidget {
                 children: [
                   const SizedBox(height: 30),
                   Image.network(
-                    '[image]',
+                    product.image.toString(),
                     height: 200,
                     width: double.infinity,
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    '\$$price',
+                    product.price.toString(),
                     style: const TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
@@ -54,14 +62,14 @@ class ProductDetailScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    product.title,
+                    product.title.toString(),
                     style: const TextStyle(
                       fontSize: 25,
                     ),
                   ),
                   Chip(
                     label: Text(
-                      '[category]',
+                      product.category.toString(),
                       style: const TextStyle(
                         fontSize: 15,
                         color: Colors.white,
@@ -70,7 +78,7 @@ class ProductDetailScreen extends StatelessWidget {
                     backgroundColor: Colors.blueGrey,
                   ),
                   const SizedBox(height: 30),
-                  Text(product.description),
+                  Text(product.description.toString()),
                 ],
               ),
             );
@@ -80,12 +88,12 @@ class ProductDetailScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.green,
         onPressed: () async {
-          await updateCart(1, id);
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Product added to cart'),
-            ),
-          );
+          // await updateCart(1, id);
+          // ScaffoldMessenger.of(context).showSnackBar(
+          //   const SnackBar(
+          //     content: Text('Product added to cart'),
+          //   ),
+          // );
         },
         child: const Icon(Icons.add_shopping_cart),
       ),

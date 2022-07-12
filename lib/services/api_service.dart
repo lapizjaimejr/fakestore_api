@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import '../models/cart.dart';
 import '../models/ordered_product.dart';
 import '../models/product.dart';
 import '../models/user_credentials.dart';
@@ -98,6 +99,17 @@ class ApiService {
         print(jsonData);
       }
       return isUpdated;
+    }).catchError((err) => print(err));
+  }
+
+  Future<Cart> getAllFromCart(int cartID) async {
+    return http.get(Uri.parse('$baseUrl/carts/$cartID')).then((data) {
+      var cart = Cart();
+      if (data.statusCode == 200) {
+        final jsonData = json.decode(data.body);
+        cart = Cart.fromJson(jsonData);
+      }
+      return cart;
     }).catchError((err) => print(err));
   }
 }
